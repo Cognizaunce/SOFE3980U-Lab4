@@ -32,7 +32,26 @@ The [model_1.csv](/SVCR/model_1.csv) file consists of two columns, true and pred
 * Update the Java program to calculate the MSE, MAE, and MARE for all the data stored in the [model_1.csv](/SVCR/model_1.csv) file.
 * Repeat the metrics evaluation for the validation results from the [model_2.csv](/SVCR/model_2.csv) and [model_3.csv](/SVCR/model_3.csv) files.
 * Figure out the model with the lower error and recommend it.
-  
+
+#### Expected Output:
+```
+for model_1.csv
+        MSE =112.09929
+        MAE =8.447413
+        MARE =0.12452688
+for model_2.csv
+        MSE =102.97186
+        MAE =8.1291275
+        MARE =0.119408615
+for model_3.csv
+        MSE =410.53354
+        MAE =16.090708
+        MARE =0.23739375
+According to MSE, The best model is model_2.csv
+According to MAE, The best model is model_2.csv
+According to MARE, The best model is model_2.csv
+```
+
 ## 2. Single-variable Binary Regression Problem
 It's similar to the single-variable continuous regression problem except that the output variable has two values: either zero or one,  $`y \in \{0,1\}`$. The estimated variable has a continuous value between 0 and 1, $`\hat{y}=p(y|x)=f_{\Theta}(\mathbf{x}) \in [0,1]`$. By applying a threshold, the value can be converted into a binary value.
 
@@ -111,7 +130,50 @@ The [model_1.csv](/SVBR/model_1.csv) file consists of two columns, true and pred
 * Update the Java program to calculate the BCE, confusion matrix, Accuracy, Precision, Recall, $F1_{\text{score}}$, and AUC-ROC for all the data stored in the [model_1.csv](/SVBR/model_1.csv) file.
 * Repeat the metrics evaluation for the validation results from the [model_2.csv](/SVBR/model_2.csv) and [model_3.csv](/SVBR/model_3.csv) files.
 * Figure out and report the model with better performance.
-  
+
+#### Expected Output:
+```
+for model_1.csv
+        BCE =2.2763095
+        Confusion matrix
+                        y=1      y=0
+                y^=1    4283    780
+                y^=0    779     4158
+        Accuracy =0.8441
+        Precision =0.8459411
+        Recall =0.84610826
+        f1 score =0.84510297
+        auc roc =0.92142826
+for model_2.csv
+        BCE =2.0675077
+        Confusion matrix
+                        y=1      y=0
+                y^=1    4497    504
+                y^=0    565     4434
+        Accuracy =0.8931
+        Precision =0.89922017
+        Recall =0.88838404
+        f1 score =0.89073575
+        auc roc =0.9595736
+for model_3.csv
+        BCE =1.7763017
+        Confusion matrix
+                        y=1      y=0
+                y^=1    4833    225
+                y^=0    229     4713
+        Accuracy =0.9546
+        Precision =0.95551604
+        Recall =0.95476097
+        f1 score =0.9546805
+        auc roc =0.99116313
+According to BCE, The best model is model_3.csv
+According to Accuracy, The best model is model_3.csv
+According to Precision, The best model is model_3.csv
+According to Recall, The best model is model_3.csv
+According to F1 score, The best model is model_3.csv
+According to AUC ROC, The best model is model_3.csv
+```
+
 ## 3. Multiclass Classification
 It's a different ML problem in which the output is one of a set of $m$ classes $`y \in {1,...,m }`$. The ML model produces $m$ outputs that represent $`\hat{y}_j=p(y_j|x) \forall j \in {1,...,m }`$. the prediction is assigned to the class with the highest probability, $`\hat{y}= argmax_{j}{p(y_j|x)} \forall j \in {1,...,m }`$
 
@@ -140,6 +202,18 @@ The [model.csv](/MCC/model.csv) file consists of six columns. The first is actua
 
 ### Task 3:
 * Update the Java program to calculate the CE and confusion matrix for all the data stored in the [model.csv](/MCC/model.csv) file.
+
+#### Expected Output:
+```
+CE =1.0077125
+Confusion matrix
+                y=1      y=2     y=3     y=4     y=5
+        y^=1    505     148     197     145     33
+        y^=2    35      1906    238     144     37
+        y^=3    35      139     2886    126     33
+        y^=4    28      136     202     1944    32
+        y^=5    44      130     237     139     501
+```
 
 ## Discussion
 Compare accuracy, recall, and precision by describing the interpretation of each of them. Using examples shows applications in which one of them is more important than the others.
