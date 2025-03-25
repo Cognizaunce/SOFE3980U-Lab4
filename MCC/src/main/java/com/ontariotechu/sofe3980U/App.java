@@ -23,7 +23,6 @@ public class App {
 
 		int count = 0;
 		double ceSum = 0.0; // Placeholder for CrossEntropy Calculation
-		double[] CE = { Double.NaN, 0.0, 0.0, 0.0, 0.0 };// ignore first index, 1-based
 		final int SIZE = 6; // Constant for matrix size
 		int[][] matrix = new int[SIZE][SIZE]; // 6x6 confusion matrix, 0 index unused
 
@@ -50,45 +49,30 @@ public class App {
 			count++; // Increment count of valid predictions
 			ceSum += Math.log(Double.parseDouble(row[y_true]));
 		}
-		// Use StringBuilder for output
-		final int FIELD_WIDTH = 8; // Adjustable width for each column
+		// Printing logic:
 		StringBuilder sb = new StringBuilder();
 
-		// Cross-Entropy line
-		sb.append(String.format("CE = %.4f%n", -ceSum / count));
+		// Append CE value
+		sb.append("CE = ").append(-ceSum / count).append("\n");
 		sb.append("Confusion Matrix:\n");
 
-		// Header row (y^=1, y^=2, etc.)
-		for (int i = 0; i < 12; i++) { // 12 spaces for indentation
-			sb.append(" ");
-		}
-		for (int c = 1; c < SIZE; c++) { // Up to SIZE-1 (excluding unused index)
-			String header = "y^=" + c;
-			sb.append(header);
-			for (int j = header.length(); j < FIELD_WIDTH; j++) { // Pad right (left-align)
-				sb.append(" ");
-			}
+		// Header row
+		sb.append(String.format("%9s", ""));
+		for (int c = 1; c < SIZE; c++) {
+			sb.append(String.format("y^=%-4d", c));
 		}
 		sb.append("\n");
 
 		// Matrix rows
 		for (int r = 1; r < SIZE; r++) {
-			String rowLabel = "y=" + r;
-			sb.append(rowLabel);
-			for (int j = rowLabel.length(); j < 12; j++) { // Pad right to 12 spaces
-				sb.append(" ");
-			}
+			sb.append(String.format("%3s y=%d%3s", "", r, ""));
 			for (int c = 1; c < SIZE; c++) {
-				String value = String.valueOf(matrix[r][c]);
-				for (int j = value.length(); j < FIELD_WIDTH; j++) { // Pad left (right-align)
-					sb.append(" ");
-				}
-				sb.append(value);
+				sb.append(String.format("%-7d", matrix[r][c]));
 			}
 			sb.append("\n");
 		}
 
-		// Print the entire output at once
+		// Print all at once to minimize I/O overhead
 		System.out.print(sb.toString());
 	}
 }
